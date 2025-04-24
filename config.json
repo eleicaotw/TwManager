@@ -1,4 +1,15 @@
 {
-  "autorizados": ["Daniel Brümmer", "Eleição", "Thor 2016."],
-  "assuntoPadrao": "⚔️ OP - SEU ALVO 💥"
+  "assuntoPadrao": "⚔️ OP - SEU ALVO 💥",
+  "autorizacoes": [
+    {
+      "nome": "Thor 2016.",
+      "mundos": ["br134"],
+      "expira": "2025-05-20"
+    },
+    {
+      "nome": "Eleição",
+      "mundos": ["br135"],
+      "expira": "2025-05-30"
+    }
+  ]
 }

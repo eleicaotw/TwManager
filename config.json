@@ -4,12 +4,12 @@
     {
       "nome": "Thor 2016.",
       "mundos": ["br134"],
-      "expira": "2025-05-20"
+      "expira": "2025-12-31"
     },
     {
-      "nome": "Eleição",
-      "mundos": ["br135"],
-      "expira": "2025-05-30"
+      "nome": "TeamEleição",
+      "mundos": ["br134"],
+      "expira": "2025-12-31"
     }
   ]
 }

@@ -59,7 +59,7 @@ if(typeof(TWMap) !="undefined" )
 
         createMainInterface()
         changeTheme()
-        hitCountApi()
+        
     }
     main()
     
@@ -1244,31 +1244,7 @@ function calculateLaunches(
 }
 
 
-function hitCountApi(){
-    $.getJSON(`https://api.counterapi.dev/v1/${countNameSpace}/${countApiKey}/up`, response=>{
-        console.log(`This script has been run: ${response.count} times`);
-    });
-    if(game_data.device !="desktop"){
-        $.getJSON(`https://api.counterapi.dev/v1/${countNameSpace}/${countApiKey}_phone/up`, response=>{
-            console.log(`This script has been run on mobile: ${response.count} times`);
-        });
-    }
- 
-    $.getJSON(`https://api.counterapi.dev/v1/${countNameSpace}/${countApiKey}_id2${game_data.player.id}/up`, response=>{
-        if(response.count == 1){
-            $.getJSON(`https://api.counterapi.dev/v1/${countNameSpace}/${countApiKey}_scriptUsers/up`, response=>{});
-        }
 
-    });
-
-    try {
-        $.getJSON(`https://api.counterapi.dev/v1/${countNameSpace}/${countApiKey}_scriptUsers`, response=>{
-            console.log(`Total number of users: ${response.count}`);
-        }); 
-      
-    } catch (error) {}
-
-}
 
 
 

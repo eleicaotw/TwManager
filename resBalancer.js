@@ -392,7 +392,7 @@ function changeTheme(){
 
         for(let i=0;i<colours.length-1;i++){
             if(colours[i].match(/#[0-9 A-F]{6}/) == null ){
-                UI.ErrorMessage("wrong colour: "+colours[i])  
+                
                 throw new Error("wrong colour")
             }
         }
@@ -405,15 +405,15 @@ function changeTheme(){
         mapTheme.set("currentTheme",selectedTheme)
 
         localStorage.setItem(localStorageThemeName, JSON.stringify(Array.from(mapTheme.entries())))
-        console.log("saved colours for: "+selectedTheme)
-        UI.SuccessMessage(`saved colours for: ${selectedTheme} \n run the script again`,1000)
+        
+        
 
 
     })
 
     $("#btn_reset_theme").on("click",()=>{
         localStorage.setItem(localStorageThemeName, defaultTheme)
-        UI.SuccessMessage("run the script again",1000)
+        
 
     })
     $("#input_slider_width").on("input",()=>{
@@ -452,8 +452,7 @@ function initializationTheme(){
 
         backgroundAlternateTableEven=backgroundContainer;
         backgroundAlternateTableOdd=getColorDarker(backgroundContainer,headerColorAlternateTable);       
-        console.log("textColor: "+textColor)
-        console.log("backgroundContainer: "+backgroundContainer)
+        
         
     }
     else{
@@ -526,10 +525,7 @@ async function balancingResources(){
         map_resources_get_AM = new Map();
 
 
-    console.log("list_production",list_production)
-    console.log("map_farm_usage",map_farm_usage)
-    console.log("map_incoming",map_incoming)
-    console.log("map_resources_get_AM",map_resources_get_AM)
+    
 
     
 
@@ -547,14 +543,13 @@ async function balancingResources(){
                 parseInt(list_production[i].coord.split("|")[1])
             ])
     }
-    console.log("kmeans_coords")
-    console.log(kmeans_coords)
+    
     let options={
         numberOfClusters:nrClusters,
         maxIterations:100
     }
     let clusters= getClusters(kmeans_coords,options)
-    console.log("clusters",clusters)
+    
 
     let list_production_cluster=[]
     let list_production_home_cluster=[]
@@ -570,7 +565,7 @@ async function balancingResources(){
                 if(list_production[k].coord == coord){
                     list_prod.push(list_production[k])
                     list_prod_home.push(list_production_home[k])
-                    console.log(`label_cluster: ${i}`)
+                    
 
                     //add incoming and then show on the map
                     let total_resources_get=0
@@ -592,7 +587,7 @@ async function balancingResources(){
         list_production_cluster.push(list_prod)
         list_production_home_cluster.push(list_prod_home)
     }
-    console.log("list_production_cluster",list_production_cluster)
+    
 
 
 
@@ -720,7 +715,7 @@ async function balancingResources(){
 
     }
 
-    console.log("list_clusters_stats",list_clusters_stats)
+    
 
 
     // list_launches.sort((o1,o2)=>{
@@ -745,7 +740,7 @@ async function balancingResources(){
 
         }
     }
-    console.log("map nr merchants",map_nr_merchants)
+    
     for(let i=0;i<list_production.length;i++){
         let nr_merchants=0
         if(map_nr_merchants.get(list_production[i].coord))
@@ -876,13 +871,10 @@ async function balancingResources(){
         return (o1.total_send > o2.total_send)?-1:(o1.total_send < o2.total_send)?1:0
     })
 
-    console.log("list_production",list_production)
-    console.log("list_launches",list_launches)
-    console.log("list_launches_mass",list_launches_mass)
-    console.log("map_draw_on_map",map_draw_on_map)
+    
 
     let stop= new Date().getTime()
-    console.log("time process: "+(stop-start))
+    
     
 
     createMainInterface()
@@ -894,7 +886,7 @@ async function balancingResources(){
     }
 
     if (typeof (TWMap) != 'undefined') {
-        console.log("map page")
+        
         document.getElementById("map_container").remove()
         TWMap.mapHandler.spawnSector=originalSpawnSector
 
@@ -904,7 +896,7 @@ async function balancingResources(){
             let randomColor=getRandomColor(opacity)
             random_color.push(randomColor)
         }
-        console.log(random_color)
+        
 
         addInfoOnMap(map_draw_on_map,random_color)
         TWMap.init();
@@ -930,7 +922,7 @@ function calculateLaunches(
     let total_wood_get_stats=0,total_stone_get_stats=0,total_iron_get_stats=0
 
     for(let i=0;i<list_production_cluster.length;i++){
-        console.log(`--------------cluster:${i}----------------`)
+        
 
         let list_prod=list_production_cluster[i]
         let list_prod_home=list_production_home_cluster[i]
@@ -1386,7 +1378,7 @@ function getDataProduction(){
                         console.log("wait: "+diff)
                         window.setTimeout(function(){
                             ajaxRequest (list_pages)
-                            UI.SuccessMessage("get production page: "+urls.length)
+                            
                         },200-diff)
                     },
                     error: (err)=>{
@@ -1398,7 +1390,7 @@ function getDataProduction(){
             else
             {
                 // console.log("list_production: herererre",list_production)
-                UI.SuccessMessage("done")
+                
                 resolve({
                     list_production:list_production,
                     map_farm_usage:map_farm_usage
@@ -1504,7 +1496,7 @@ function getDataIncoming(){
                         console.log("wait: "+diff)
                         window.setTimeout(function(){
                             ajaxRequest (list_pages)
-                            UI.SuccessMessage("get incoming page: "+urls.length)
+                            
                         },200-diff)
                     },
                     error:(err)=>{
@@ -1515,7 +1507,7 @@ function getDataIncoming(){
             }
             else
             {
-                UI.SuccessMessage("done")
+                
                 // console.log(map_incoming)
                 resolve(map_incoming)
 
@@ -1973,7 +1965,7 @@ function sendResources(target_id,data) {
 
     TribalWars.post("market",options, data, function(response) {
         console.log(response)
-        UI.SuccessMessage(response.success,1000)
+        
     }, function(error){
         console.log(error)
     });
@@ -2211,7 +2203,7 @@ function getTemplates(){
                         console.log("wait: "+diff)
                         window.setTimeout(function(){
                             ajaxRequest (list_pages)
-                            UI.SuccessMessage("get AM construction page: "+urls.length)
+                            
                         },200-diff)
                     },
                     error:(err)=>{
@@ -2268,7 +2260,7 @@ function getTemplates(){
 
                 // console.log("map_construction_templates",map_construction_templates)
                 // console.log("map_coord_templates",map_coord_templates)
-                UI.SuccessMessage("done")
+                
                 resolve({
                     map_coord_templates:map_coord_templates,
                     map_construction_templates:map_construction_templates,
@@ -2459,7 +2451,7 @@ function getDataBuildings(){
                         console.log("wait: "+diff)
                         window.setTimeout(function(){
                             ajaxRequest (list_pages)
-                            UI.SuccessMessage("get building page: "+urls.length)
+                            
                         },200-diff)
                     },
                     error: (err)=>{
@@ -2470,7 +2462,7 @@ function getDataBuildings(){
             }
             else
             {
-                UI.SuccessMessage("done")
+                
                 console.log("map_buildings herere",map_buildings)
                 resolve(map_buildings)
      
